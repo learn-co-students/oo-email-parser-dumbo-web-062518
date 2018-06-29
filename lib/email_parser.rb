@@ -14,9 +14,11 @@ def initialize(email)
 end
 
 def parse
-  new_emails = @emails.split(/[\s,]/)
-  new_emails = new_emails.reject {|email| email == ""}
+  split.reject {|email| email == ""}
   @emails = new_emails.uniq
 end
+
+def split
+  @emails = @emails.split(/[\s,]/)
 
 end
