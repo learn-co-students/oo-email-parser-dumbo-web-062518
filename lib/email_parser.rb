@@ -6,7 +6,7 @@ require 'pry'
 
 class EmailParser
 
-attr_accessor :emails
+attr_accessor :emails, :new_emails
 @emails = []
 
 def initialize(email)
@@ -14,11 +14,17 @@ def initialize(email)
 end
 
 def parse
-  split.reject {|email| email == ""}
-  @emails = new_emails.uniq
+  split
+  clear
+  @emails = @new_emails.uniq
 end
 
 def split
-  @emails = @emails.split(/[\s,]/)
+  @new_emails = @emails.split(/[\s,]/)
+end
+
+def clear
+  @new_emails = @new_emails.reject {|email| email == ""}
+end
 
 end
